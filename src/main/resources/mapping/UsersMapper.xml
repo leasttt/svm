@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.master.svmDemo.mapper.UserMapper">
+	<resultMap id="BaseResultMap" type="com.master.svmDemo.model.User" >
+    	<id column="id" property="id" jdbcType="INTEGER" />
+    	<result column="NAME" property="NAME" jdbcType="VARCHAR" />
+    	<result column="age" property="age" jdbcType="INTEGER" />
+  	</resultMap>
+  	
+	<sql id="Base_Column_List" >
+		id, NAME, age
+  	</sql>
+  	
+  	<select id="getUser3" resultMap="BaseResultMap">
+    	select 
+    	<include refid="Base_Column_List" />
+    		from users
+    		where id = #{id,jdbcType=INTEGER}
+			AND age &lt; 50
+  	</select>
+  	<!-- <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+   		delete from house_img
+    	where rec_id = #{recId,jdbcType=INTEGER}
+  	</delete>
+  	<insert id="insert" parameterType="com.yujian.entity.houseImg" >
+    	insert into house_img (rec_id, house_id, img_url
+      	)
+    	values (#{recId,jdbcType=INTEGER}, #{houseId,jdbcType=INTEGER}, #{imgUrl,jdbcType=VARCHAR}
+      	)
+  	</insert>
+  	<update id="updateByPrimaryKey" parameterType="com.yujian.entity.houseImg" >
+    	update house_img
+    	set house_id = #{houseId,jdbcType=INTEGER},
+      		img_url = #{imgUrl,jdbcType=VARCHAR}
+    	where rec_id = #{recId,jdbcType=INTEGER}
+  	</update> -->
+</mapper>
